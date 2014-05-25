@@ -2,6 +2,7 @@ module Dispersion
 ( mean
 , variance
 , standardDev
+, standardError
 , covar
 , zScore
 , cor
@@ -25,6 +26,11 @@ standardDev :: (Fractional a, Floating a) => [a] -> a
 standardDev vals =
     let var      = variance vals 
     in  sqrt var
+
+standardError :: (Fractional a, Floating a) => [a] -> a 
+standardError vals = 
+    let n          = sqrt $ genericLength vals
+    in standardDev vals / n 
 
 covar :: (Fractional a, Floating a) => [a] -> [a] -> a
 covar x y =
