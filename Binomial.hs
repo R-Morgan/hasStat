@@ -7,7 +7,7 @@ module Binomial
 import Data.List
 import Factorials
 
-binomialCoef :: Int -> Int -> Float
+binomialCoef :: Integer -> Integer -> Float
 binomialCoef k n    =
     let numerator   = fromIntegral $ factorialFall n k
         denominator = fromIntegral $ factorial k 
