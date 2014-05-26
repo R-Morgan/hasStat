@@ -1,17 +1,20 @@
 module Binomial
-(binomialCoef
+( binomialCoef
+, binomialPDF
+, binomialCDF
 ) where
 
 import Data.List
 import Factorials
 
 binomialCoef :: Int -> Int -> Float
-binomialCoef x k    =
-    let numerator   = fromIntegral $ factorialFall x k
+binomialCoef k n    =
+    let numerator   = fromIntegral $ factorialFall n k
         denominator = fromIntegral $ factorial k 
     in  numerator / denominator
 
 binomialPDF :: Int -> Int -> Float -> Float
-binomialPDF x k p   =
-    binomialCoef x k * p^k * (1 - p)^(x-k)
+binomialPDF k n p   = (binomialCoef k n) * (p^k) * (1 - p)^(n-k)
 
+binomialCMF :: Int -> Int -> Float -> Float
+binomialCMF k n p   = sum [binomialPDF ks n p | ks <- [0..k-1]]
