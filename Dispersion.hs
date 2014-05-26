@@ -3,6 +3,7 @@ module Dispersion
 , variance
 , standardDev
 , standardError
+, standardErrorVar
 , covar
 , zScore
 , cor
@@ -20,7 +21,7 @@ variance :: (Fractional a, Floating a) => [a] -> a
 variance vals =
     let sample   = (genericLength vals) - 1
         squares  = sum [(x - m)^2 | x <- vals, let m = mean vals] 
-        in  squares / sample 
+    in  squares / sample 
 
 standardDev :: (Fractional a, Floating a) => [a] -> a
 standardDev vals =
@@ -31,6 +32,12 @@ standardError :: (Fractional a, Floating a) => [a] -> a
 standardError vals = 
     let n          = sqrt $ genericLength vals
     in standardDev vals / n 
+
+standardErrorVar :: (Fractional a, Floating a) => [a] -> a
+standardErrorVar vals =
+   let var = variance vals 
+       n   = genericLength vals
+   in  var * sqrt (2.0 / (n - 1.0))
 
 covar :: (Fractional a, Floating a) => [a] -> [a] -> a
 covar x y =
