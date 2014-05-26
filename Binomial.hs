@@ -1,7 +1,7 @@
 module Binomial
 ( binomialCoef
 , binomialPDF
-, binomialCDF
+, binomialCMF
 ) where
 
 import Data.List
