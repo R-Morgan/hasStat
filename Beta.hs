@@ -3,7 +3,8 @@ module Beta
 , betaPDF
 , incompleteBeta
 , multinomialBeta
-)
+) where 
+
 import Gamma
 import Factorials
 
