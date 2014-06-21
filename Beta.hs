@@ -1,3 +1,9 @@
+module Beta
+( betaFunc
+, betaPDF
+, incompleteBeta
+, multinomialBeta
+)
 import Gamma
 import Factorials
 
@@ -13,7 +19,7 @@ incompleteBeta :: Float -> BetaParams -> Float
 incompleteBeta x (BetaParams alpha beta) =
    x**alpha * sum [((pocahammer (1-beta) (fromIntegral n)) / ((fromIntegral (factorial n)) * (alpha + (fromIntegral n)))) * x^n | n <- [0..20]] 
 
-multinomialBetaFunc :: [Float] -> Float
-multinomialBetaFunc x = numerator / denominator
+multinomialBeta :: [Float] -> Float
+multinomialBeta x = numerator / denominator
     where numerator = product  [gammaFunc alpha 10000 | alpha <- x] 
           denominator = gammaFunc (sum [alpha | alpha <- x]) 10000
