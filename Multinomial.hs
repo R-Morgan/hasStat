@@ -5,5 +5,5 @@ multinomialPMF
 
 import Factorials
 
-multinomialPMF :: (Num a, Floating a) => [a] -> Int -> [a] -> Float
-multinomialPMF xs n ps = (factorial n) / (product $ map factorial xs) * product [p ^ x | x <- xs, p <- ps]
+multinomialPMF :: (Num a, Floating a) => [Int] -> Int -> [a] -> a
+multinomialPMF xs n ps = (fromIntegral $ factorial n) / (fromIntegral $ product $ map factorial xs) * product [p ^ x | (x, p) <- zip xs ps]
