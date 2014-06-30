@@ -20,7 +20,7 @@ factorialRise x 0 = 1
 factorialRise x 1 = x
 factorialRise x k = (x + k - 1) * factorialRise x (k-1)
 
-pocahammer :: Float -> Float -> Float
+pocahammer :: (Num a, Floating a, Eq a) => a -> a -> a
 pocahammer x 0 = 1
 pocahammer x 1 = x
 pocahammer x n = (gammaFunc (x + n) 10000) / gammaFunc x 10000
