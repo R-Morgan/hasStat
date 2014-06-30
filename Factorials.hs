@@ -6,7 +6,7 @@ module Factorials
 
 import Gamma
 
-factorial :: (Integral a) => a -> a
+factorial :: (Num a, Integral a) => a -> a
 factorial 0 = 1
 factorial n = n * factorial (n - 1)
 
