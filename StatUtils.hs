@@ -1,6 +1,8 @@
 module StatUtils
 ( dropKth
 , doAndGlue
+, lcIntGen
+, lcIterIntGen
 ) where
 
 dropKth :: Int -> [a] -> [a]
@@ -24,3 +26,17 @@ doAndGlue n f xs
     | n == length xs = init xs ++ [f $ init xs]
     | otherwise = doAndGlue (n + 1) f [] 
 
+-- linear congruential generator
+lcIntGen :: (Num a, Integral a) => a -> a 
+lcIntGen seed = let m        = 2^31
+                    increment  = 12345
+                    multiplier = 110515245
+                in  (fromIntegral $ (multiplier * seed + increment) `mod` m) 
+
+lcIterIntGen :: (Num a, Integral a) => a -> a -> [a]
+lcIterIntGen seed 0          = []
+lcIterIntGen seed iterations = let tmpVal = lcIntGen seed 
+                               in tmpVal : lcIterIntGen tmpVal (iterations - 1)
+
+lcGen :: (Num a, Floating a) => Int -> Int -> [a]
+lcGen seed n = [fromIntegral randInt / 2**31 | randInt <- lcIterIntGen seed n]
