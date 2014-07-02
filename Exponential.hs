@@ -1,6 +1,7 @@
 module Exponential
-(
-exponentialPDF
+( exponentialPDF
+, exponentialCDF
+, exponentialQuantile
 ) where
 
 import StatUtils
@@ -13,4 +14,5 @@ exponentialCDF x lambda = 1 - exp(-1 * lambda * x)
 
 exponentialQuantile :: (Num a, Floating a) => a -> a -> a
 exponentialQuantile x lambda = (-1 * log (1-x)) / lambda 
+
 
