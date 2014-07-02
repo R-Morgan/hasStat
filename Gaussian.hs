@@ -1,6 +1,6 @@
 module Gaussian
 ( standardNormPDF
-, genNormPDF
+, generalNormPDF
 ) where
 
 import Dispersion
@@ -8,5 +8,9 @@ import Dispersion
 standardNormPDF :: (Num a, Floating a) => a -> a
 standardNormPDF x = exp (-((1/2) * x^2)) / (sqrt (2 * pi))
           
-genNormPDF :: (Num a, Floating a) => a -> a -> a -> a
-genNormPDF x mu sigma = (1 / (sigma * sqrt 2*pi)) * exp(-((x - mu)^2 / 2*sigma^2))
+generalNormPDF :: (Num a, Floating a) => a -> a -> a -> a
+generalNormPDF x mu sigma = constant * (e ** exponent)
+    where constant = (1 / (sigma * sqrt (2 * pi)))
+          e        = exp 1
+          exponent = -(((x - mu)**2) / (2 * sigma^2))
+      
