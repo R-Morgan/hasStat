@@ -40,6 +40,7 @@ lcIterIntGen seed 0          = []
 lcIterIntGen seed iterations = let tmpVal = lcIntGen seed 
                                in tmpVal : lcIterIntGen tmpVal (iterations - 1)
 
+-- normalising functions to provide values between zero and one
 lcValGen :: (Num a, Floating a) => Int -> a
 lcValGen seed = (fromIntegral $ lcIntGen seed) / 2**31 
 
