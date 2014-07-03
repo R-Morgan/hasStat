@@ -7,7 +7,8 @@ gammaFunc
 
 gammaFunc :: (Num a, Floating a) => a -> Int -> a
 gammaFunc t n =
-    (exp(-gamma*t)/t) * product [(1 + (t/(fromIntegral ns)))**(-1) * (exp(t/(fromIntegral ns))) | ns <- [1..n]]
+    (exp(-gamma*t)/t) * product [(1 + (t/(fromIntegral ns)))**(-1) * 
+                                 (exp(t/(fromIntegral ns))) | ns <- [1..n]]
     where gamma = 0.577216
 
 -- PDF parameterised with k and theta
@@ -20,5 +21,8 @@ gammaPDF x k theta = let gam         = gammaFunc k 10000
 -- PDF parameterised with alpha and beta
 gammaPDFAlt :: (Num a, Floating a) => a -> a -> a -> a
 gammaPDFAlt x alpha beta = let numerator   = (x ** (alpha - 1)) * (exp(-x * beta)) 
-                               denominator = (beta ** (-alpha)) * gammaFunc alpha 10000
+                               denominator = (beta ** (-alpha)) * 
+                                              gammaFunc alpha 10000
                            in  numerator   / denominator
+
+
