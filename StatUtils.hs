@@ -3,6 +3,8 @@ module StatUtils
 , doAndGlue
 , lcIntGen
 , lcIterIntGen
+, lcValGen
+, lcGen
 ) where
 
 dropKth :: Int -> [a] -> [a]
@@ -38,5 +40,10 @@ lcIterIntGen seed 0          = []
 lcIterIntGen seed iterations = let tmpVal = lcIntGen seed 
                                in tmpVal : lcIterIntGen tmpVal (iterations - 1)
 
-lcGen :: (Num a, Floating a) => Int -> Int -> [a]
+lcValGen :: (Num a, Floating a) => Int -> a
+lcValGen seed = (fromIntegral $ lcIntGen seed) / 2**31 
+
+lcGen :: (Num a, Floating a) => Int -> Int -> [a] 
 lcGen seed n = [fromIntegral randInt / 2**31 | randInt <- lcIterIntGen seed n]
+
+ 
