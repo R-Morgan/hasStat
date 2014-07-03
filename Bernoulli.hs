@@ -1,5 +1,6 @@
 module Bernoulli
 ( bernoulliPMF
+, bernoulliProd
 ) where
 
 bernoulliPMF :: Int -> Float -> Float
