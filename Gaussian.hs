@@ -18,7 +18,5 @@ generalNormPDF x mu sigma = constant * (e ** exponent)
       
 normGenerator :: (Num a, Floating a) =>  Int -> Int -> (a, a)
 normGenerator seedA seedB = (x, y) 
-    --let u = log $ lcValGen seedA * (-2)
     where x = sqrt ((-2) * (log $ lcValGen seedA)) * cos (2 * pi * (lcValGen seedB))
           y = sqrt ((-2) * (log $ lcValGen seedA)) * sin (2 * pi * (lcValGen seedB))
-    --in x : y
