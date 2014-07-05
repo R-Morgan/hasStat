@@ -7,8 +7,11 @@ module Exponential
 
 import StatUtils
 
-exponentialPDF :: (Num a, Floating a) => a -> a -> a
-exponentialPDF x lambda = lambda * exp (-1 * lambda * x)
+exponentialPDF :: (Num a, Ord a, Floating a) => a -> a -> a
+exponentialPDF x lambda 
+    | x      <= 0 = 0
+    | lambda <= 0 = 0 
+    | otherwise = lambda * exp (-1 * lambda * x)
 
 exponentialCDF :: (Num a, Floating a) => a -> a -> a
 exponentialCDF x lambda = 1 - exp(-1 * lambda * x)
@@ -18,4 +21,5 @@ exponentialQuantile x lambda = (-1 * log (1-x)) / lambda
 
 exponentialValGen :: (Num a, Floating a) => a -> a -> a
 exponentialValGen u lambda = exponentialQuantile u lambda  -- u ~ Unif(0, 1)
+
 
