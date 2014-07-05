@@ -1,3 +1,11 @@
+module Poisson
+( poissonPMF
+) where
 
-poissonPMF :: Int -> Int -> Float
-poissonPMF k lambda = lambda^k * exp(-lambda) / factorial k
+import Factorials
+
+poissonPMF :: Float -> Int -> Float
+poissonPMF k lambda    = (numerator / denominator) * exp ((-1) * (fromIntegral lambda))
+    where  numerator   = fromIntegral lambda ** k 
+           denominator = factorial k
+
