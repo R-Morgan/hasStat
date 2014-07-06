@@ -4,7 +4,6 @@ module Gaussian
 , normGenerator
 ) where
 
-import Dispersion
 import StatUtils
 
 standardNormPDF :: (Num a, Floating a) => a -> a
