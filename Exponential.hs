@@ -8,6 +8,14 @@ module Exponential
 
 import StatUtils
 
+
+-- The following two functions are the different parameterisations
+-- of the exponential PDF. The test function of their equivalence
+-- will pass through 100 sets of  test values only SOME of the time.
+-- The failures occur with very small small values of x or lambda.
+-- Failures usually include a lambda value < 1e-307. For now, input
+-- should be kept to much higher values
+--
 exponentialPDF :: (Num a, Ord a, Floating a) => a -> a -> a
 exponentialPDF x lambda 
     | x      <= 0 = 0
